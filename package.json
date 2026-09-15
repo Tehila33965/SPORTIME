@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "start": "node --env-file=.env server/app.js"
   },
