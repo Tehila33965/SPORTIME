@@ -4,24 +4,25 @@ const instructorSchema = new Schema(
     {
         name: {
             type: String,
-            required: [true, 'Instructor name is required'],
+            required: true,
             trim: true,
         },
-        specialization: { // סוג ההתמחות של המדריך  
+        // התמחות
+        specialization: {
             type: String,
-            required: [true, 'Specialization is required'],
+            required: true,
             trim: true,
         },
         email: {
             type: String,
-            required: [true, 'Email is required'],
+            required: true,
             unique: true,
             trim: true,
             lowercase: true,
         },
         phone: {
             type: String,
-            required: [true, 'Phone number is required'],
+            required: true,
             trim: true,
         },
         image: {
@@ -32,5 +33,14 @@ const instructorSchema = new Schema(
     { timestamps: true }
 );
 
-const Instructor = model('Instructor', instructorSchema);
-export default Instructor;
+// סינון שדות מערכתיים בעת המרה ל-JSON
+instructorSchema.set('toJSON', {
+    transform: (doc, ret) => {
+        delete ret.__v;
+        ret.id = ret._id;
+        delete ret._id;
+        return ret;
+    }
+});
+
+export const Instructor = model('Instructor', instructorSchema);

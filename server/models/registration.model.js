@@ -6,13 +6,13 @@ const registrationSchema = new Schema(
         user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
-            required: [true, 'User reference is required'],
+            required: true,
         },
         // מועד השיעור הספציפי אליו נרשם
         session: {
             type: Schema.Types.ObjectId,
             ref: 'ClassSession',
-            required: [true, 'Session reference is required'],
+            required: true,
         },
         // סטטוס ההרשמה
         status: {
@@ -24,5 +24,16 @@ const registrationSchema = new Schema(
     { timestamps: true }
 );
 
-const Registration = model('Registration', registrationSchema);
-export default Registration;
+// מניעת כפילות: משתמש לא יכול להירשם לאותו סשן פעמיים
+registrationSchema.index({ user: 1, session: 1 }, { unique: true });
+
+registrationSchema.set('toJSON', {
+    transform: (doc, ret) => {
+        delete ret.__v;
+        ret.id = ret._id;
+        delete ret._id;
+        return ret;
+    }
+});
+
+export const Registration = model('Registration', registrationSchema);
