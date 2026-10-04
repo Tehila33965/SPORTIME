@@ -35,5 +35,4 @@ classTemplateSchema.set('toJSON', {
     }
 });
 
-const ClassTemplate = model('ClassTemplate', classTemplateSchema);
-export default ClassTemplate;
+export const ClassTemplate = model('ClassTemplate', classTemplateSchema);

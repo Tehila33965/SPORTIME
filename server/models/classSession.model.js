@@ -42,5 +42,4 @@ classSessionSchema.set('toJSON', {
     }
 });
 
-const ClassSession = model('ClassSession', classSessionSchema);
-export default ClassSession;
+export const ClassSession = model('ClassSession', classSessionSchema);
