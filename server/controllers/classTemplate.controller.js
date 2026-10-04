@@ -2,7 +2,18 @@ import { ClassTemplate } from '../models/classTemplate.model.js';
 
 export const getAllClassTemplates = async (req, res, next) => {
     try {
-        const templates = await ClassTemplate.find();
+        const page = +req.query.page || 1;
+        const limit = +req.query.limit || 10;
+        const filter = {};
+
+        if (req.query.title) {
+            filter.title = { $regex: req.query.title, $options: 'i' };
+        }
+
+        const templates = await ClassTemplate.find(filter)
+            .skip((page - 1) * limit)
+            .limit(limit);
+
         res.json(templates);
     } 
     catch (error) {
