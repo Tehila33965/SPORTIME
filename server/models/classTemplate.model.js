@@ -4,17 +4,17 @@ const classTemplateSchema = new Schema(
     {
         title: {
             type: String,
-            required: [true, 'Class title is required'],
+            required: true, 
             trim: true,
         },
         description: {
             type: String,
-            required: [true, 'Description is required'],
+            required: true,
             trim: true,
         },
         category: {
             type: String,
-            required: [true, 'Category is required'],
+            required: true, 
             trim: true,
         },
         image: {
@@ -24,6 +24,16 @@ const classTemplateSchema = new Schema(
     },
     { timestamps: true }
 );
+
+
+classTemplateSchema.set('toJSON', {
+    transform: (doc, ret) => {
+        delete ret.__v;
+        ret.id = ret._id;
+        delete ret._id;
+        return ret;
+    }
+});
 
 const ClassTemplate = model('ClassTemplate', classTemplateSchema);
 export default ClassTemplate;

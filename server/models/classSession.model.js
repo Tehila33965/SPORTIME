@@ -6,31 +6,41 @@ const classSessionSchema = new Schema(
         classTemplate: {
             type: Schema.Types.ObjectId,
             ref: 'ClassTemplate',
-            required: [true, 'Class template reference is required'],
+            required: true,
         },
         // קישור למורה שמעביר את השיעור הספציפי הזה
         instructor: {
             type: Schema.Types.ObjectId,
             ref: 'Instructor',
-            required: [true, 'Instructor reference is required'],
+            required: true,
         },
         date: {
             type: Date,
-            required: [true, 'Date is required'],
+            required: true,
         },
         time: {
             type: String,
-            required: [true, 'Time is required'],
+            required: true,
             match: [/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Please use a valid time format (HH:MM)']
         },
         maxParticipants: {
             type: Number,
-            required: [true, 'Max participants is required'],
+            required: true, 
             min: [5, 'A class must have a minimum of 5 participants to take place'],
         },
     },
     { timestamps: true }
 );
+
+
+classSessionSchema.set('toJSON', {
+    transform: (doc, ret) => {
+        delete ret.__v;
+        ret.id = ret._id;
+        delete ret._id;
+        return ret;
+    }
+});
 
 const ClassSession = model('ClassSession', classSessionSchema);
 export default ClassSession;
