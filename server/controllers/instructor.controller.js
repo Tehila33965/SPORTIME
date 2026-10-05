@@ -1,4 +1,4 @@
-import { Instructor } from '../schemas/instructor.schema.js';
+import { Instructor } from '../models/instructor.model.js';
 
 // שליפת כל המאמנים (כולל תמיכה ב-Pagination וחיפוש לפי שם/התמחות)
 export const getAllInstructors = async (req, res, next) => {
