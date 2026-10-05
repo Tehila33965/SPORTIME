@@ -1,5 +1,6 @@
 import { User } from '../models/user.model.js';
 import jwt from 'jsonwebtoken';
+import { env } from '../config/env.js';
 
 export const getAllUsers = async (req, res, next) => {
     try {
@@ -149,7 +150,7 @@ export const signIn = async (req, res, next) => {
         // יצירת JSON Web Token (JWT) עבור המשתמש המחובר
         const token = jwt.sign(
             { userId: user._id, role: user.role }, 
-            process.env.JWT_SECRET, // המפתח הסודי שמוגדר בקובץ ה-.env
+            env.JWT_SECRET, // המפתח הסודי שמוגדר בקובץ ה-.env
             { expiresIn: '7d' }     // תוקף הטוקן
         );
 
