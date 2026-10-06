@@ -6,3 +6,8 @@ export const userSchema = Joi.object({
     password: Joi.string().min(6).required(),
     role: Joi.string().valid('client', 'admin').default('client')
 });
+
+export const loginSchema = Joi.object({
+    email: Joi.string().trim().email().required(),
+    password: Joi.string().required()
+});
