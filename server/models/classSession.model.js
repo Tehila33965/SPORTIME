@@ -28,6 +28,11 @@ const classSessionSchema = new Schema(
             required: true, 
             min: [5, 'A class must have a minimum of 5 participants to take place'],
         },
+        registeredCount: {
+            type: Number,
+            default: 0,
+            min: [0, 'Registered count cannot be negative']
+        },
     },
     { timestamps: true }
 );
