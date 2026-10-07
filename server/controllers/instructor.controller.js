@@ -19,15 +19,16 @@ export const getAllInstructors = async (req, res, next) => {
         res.json(instructors);
     }
     catch (error) {
-        next({ status: 500, error: new Error('Server Error'), type: 'server error' });}
+        next({ status: 500, error: new Error('Server Error'), type: 'server error' });
+    }
 }
 
 // שליפת מאמנים לפי התמחות ספציפית
 export const getInstructorsBySpecialization = async (req, res, next) => {
     try {
-        const { specializationName } = req.params;
-        const instructors = await Instructor.find({ 
-            specialization: { $regex: specializationName, $options: 'i' } 
+        const { specialization } = req.params;
+        const instructors = await Instructor.find({
+            specialization: { $regex: specialization, $options: 'i' }
         });
 
         res.json(instructors);
@@ -70,8 +71,8 @@ export const addInstructor = async (req, res, next) => {
 export const updateInstructor = async (req, res, next) => {
     try {
         const instructor = await Instructor.findByIdAndUpdate(
-            req.params.id, 
-            { $set: req.body }, 
+            req.params.id,
+            { $set: req.body },
             { new: true, runValidators: true }
         );
 

@@ -14,5 +14,6 @@ export const requireRole = (allowedRoles = []) => {
                 type: 'authorization error'
             });
         }
+        next();
     }
 }

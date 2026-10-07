@@ -1,4 +1,5 @@
 import { Registration } from '../models/registration.model.js';
+import { ClassSession } from '../models/classSession.model.js';
 
 export const getAllRegistrations = async (req, res, next) => {
     try {
@@ -45,6 +46,11 @@ export const addRegistration = async (req, res, next) => {
         const newRegistration = new Registration(req.body);
         await newRegistration.save();
 
+        const classSessionId = req.body.session;
+        if (classSessionId) {
+            await ClassSession.findByIdAndUpdate(classSessionId, { $inc: { registeredCount: 1 } });
+        }
+
         res.status(201).json(newRegistration);
     }
     catch (error) {
@@ -77,6 +83,11 @@ export const deleteRegistration = async (req, res, next) => {
 
         if (!registration) {
             return next({ status: 404, error: new Error('Registration not found'), type: 'resource not found error' });
+        }
+
+        const classSessionId = registration.session;
+        if (classSessionId) {
+            await ClassSession.findByIdAndUpdate(classSessionId, { $inc: { registeredCount: -1 } });
         }
 
         res.status(204).send();
