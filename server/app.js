@@ -6,6 +6,7 @@ import indexRoutes from './routes/index.route.js';
 import { notFound, errorHandler } from './middlewares/errors.middleware.js';
 import { connectDB } from './config/db.js';
 import { env } from './config/env.js';
+import { fileURLToPath } from 'node:url';
 
 const app = express();
 
@@ -17,6 +18,8 @@ connectDB();
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
 app.use(cors());
+
+app.use(express.static(fileURLToPath(new URL('../client', import.meta.url))));
 
 app.use(express.json());
 

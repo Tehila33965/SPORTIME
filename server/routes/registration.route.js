@@ -7,8 +7,8 @@ import { blockingAtCertainDays } from '../middlewares/blockingAtCertainDays.midd
 
 const router = Router();
 
-router.get('/', blockingAtCertainDays(), getAllRegistrations);
-router.get('/:id', blockingAtCertainDays(), getRegistration);
+router.get('/', verifyAuth, blockingAtCertainDays(), getAllRegistrations);
+router.get('/:id', verifyAuth, blockingAtCertainDays(), getRegistration);
 router.post('/', verifyAuth, blockingAtCertainDays(), validate(registrationSchema), addRegistration);
 router.put('/:id', verifyAuth, blockingAtCertainDays(), validate(registrationSchema), updateRegistration);
 router.delete('/:id', verifyAuth, blockingAtCertainDays(), deleteRegistration);

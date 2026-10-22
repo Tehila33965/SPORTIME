@@ -1,19 +1,28 @@
 import { Router } from 'express';
 import { getAllUsers, getUser, addUser, updateUser, changePassword, deleteUser, signUp, signIn } from '../controllers/user.controller.js';
 import { verifyAuth } from '../middlewares/auth.middleware.js';
+import { requireRole, requireSelf, requireSelfOrAdmin } from '../middlewares/role.middleware.js';
 import { validate } from '../middlewares/validate.middleware.js';
-import { userSchema, loginSchema } from '../schemas/user.schema.js';
+import { userSchema, signUpSchema, updateUserSchema, changePasswordSchema, loginSchema } from '../schemas/user.schema.js';
 import { blockingAtCertainDays } from '../middlewares/blockingAtCertainDays.middleware.js';
-
+ 
 const router = Router();
-
-router.post('/signup', blockingAtCertainDays(), validate(userSchema), signUp);
+ 
+// ציבורי
+router.post('/signup', blockingAtCertainDays(), validate(signUpSchema), signUp);
 router.post('/signin', blockingAtCertainDays(), validate(loginSchema), signIn);
-router.get('/', blockingAtCertainDays(), getAllUsers);
-router.get('/:id', blockingAtCertainDays(), getUser);
-router.post('/', verifyAuth, blockingAtCertainDays(), validate(userSchema), addUser);
-router.put('/:id', verifyAuth, blockingAtCertainDays(), validate(userSchema), updateUser);
-router.patch('/password/:id', verifyAuth, blockingAtCertainDays(), changePassword);
-router.delete('/:id', verifyAuth, blockingAtCertainDays(), deleteUser);
-
+ 
+// אדמין בלבד
+router.get('/', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), getAllUsers);
+router.post('/', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), validate(userSchema), addUser);
+router.delete('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), deleteUser);
+ 
+// המשתמש עצמו או אדמין
+router.get('/:id', verifyAuth, requireSelfOrAdmin(), blockingAtCertainDays(), getUser);
+router.put('/:id', verifyAuth, requireSelfOrAdmin(), blockingAtCertainDays(), validate(updateUserSchema), updateUser);
+ 
+// שינוי סיסמה - המשתמש עצמו בלבד
+router.patch('/password/:id', verifyAuth, requireSelf(), blockingAtCertainDays(), validate(changePasswordSchema), changePassword);
+ 
 export default router;
+ 

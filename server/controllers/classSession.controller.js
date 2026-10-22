@@ -1,5 +1,10 @@
 import { ClassSession } from '../models/classSession.model.js';
 
+const populateOptions = [
+    { path: 'classTemplate', select: 'title description category image' },
+    { path: 'instructor', select: 'name specialization image' }
+];
+
 export const getAllClassSessions = async (req, res, next) => {
     try {
         const page = +req.query.page || 1;
@@ -15,6 +20,7 @@ export const getAllClassSessions = async (req, res, next) => {
         }
 
         const sessions = await ClassSession.find(filter)
+            .populate(populateOptions)
             .skip((page - 1) * limit)
             .limit(limit);
 

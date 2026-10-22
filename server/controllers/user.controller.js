@@ -50,6 +50,9 @@ export const addUser = async (req, res, next) => {
         res.status(201).json(newUser);
     } 
     catch (error) {
+        if (error.code === 11000) {
+            return next({ status: 400, error: new Error('Email already exists'), type: 'bad request' });
+        }
         next({ status: 500, error: new Error('Server Error'), type: 'server error' });
     }
 };
@@ -62,16 +65,18 @@ export const updateUser = async (req, res, next) => {
             return next({ status: 404, error: new Error('User not found'), type: 'resource not found error' });
         }
 
-        // מניעת עדכון שדות רגישים דרך המסלול הזה
-        delete req.body.password;
-        delete req.body.role;
-
-        Object.assign(user, req.body);
+        // הסכמה (updateUserSchema) מאפשרת רק name ו-email,
+        // אז סיסמה ו-role לא יכולים להגיע לכאן
+        user.name = req.body.name;
+        user.email = req.body.email;
         await user.save();
 
         res.json(user);
     } 
     catch (error) {
+        if (error.code === 11000) {
+            return next({ status: 400, error: new Error('Email already exists'), type: 'bad request' });
+        }
         next({ status: 500, error: new Error('Server Error'), type: 'server error' });
     }
 };
@@ -118,9 +123,10 @@ export const deleteUser = async (req, res, next) => {
 
 export const signUp = async (req, res, next) => {
     try {
-        const newUser = new User(req.body);
+        const { name, email, password } = req.body;
+        const newUser = new User({ name, email, password, role: 'client' });
         await newUser.save();
-
+        
         res.status(201).json(newUser);
     }
     catch (error) {
