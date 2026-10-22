@@ -7,11 +7,11 @@ export const validate = (schema) => {
         if (error) {
             const errorMessage = error.details.map(detail => detail.message).join(', ');
 
-            const validationError = new Error(errorMessage);
-            validationError.status = 400;
-            validationError.type = 'Validation Error';
-
-            return next(validationError);
+            return next({
+                status: 400,
+                error: new Error(errorMessage),
+                type: 'Validation Error'
+            });
         }
 
         next();
