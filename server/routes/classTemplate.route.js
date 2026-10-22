@@ -15,8 +15,8 @@ import { upload } from '../middlewares/upload.middleware.js';
 
 const router = Router();
 
-router.get('/', getAllClassTemplates, blockingAtCertainDays());
-router.get('/:id', getClassTemplate, blockingAtCertainDays());
+router.get('/', blockingAtCertainDays(), getAllClassTemplates);
+router.get('/:id', blockingAtCertainDays(), getClassTemplate);
 router.post('/', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), upload.single('image'), validate(classTemplateSchema), addClassTemplate);
 router.put('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), upload.single('image'), validate(classTemplateSchema), updateClassTemplate);
 router.delete('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), deleteClassTemplate);

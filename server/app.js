@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import path from 'path';
 import indexRoutes from './routes/index.route.js';
 import { notFound, errorHandler } from './middlewares/errors.middleware.js';
 import { connectDB } from './config/db.js';
@@ -12,11 +13,15 @@ connectDB();
 
 // npm לבחירתנו
 // הוספת כותרות אבטחה להגנה מפני פגיעויות נפוצות ברשת
-app.use(helmet());
+// הוספת כותרות אבטחה. cross-origin נדרש כדי שהלקוח יוכל להציג תמונות מ-/uploads
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
 app.use(cors());
 
 app.use(express.json());
+
+// הגשת התמונות שהועלו
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.use('/api', indexRoutes);
 

@@ -2,18 +2,19 @@ export const validate = (schema) => {
 
     const middleware = (req, res, next) => {
 
-        const { error } = schema.validate(req.body, { abortEarly: false });
+        const { error, value } = schema.validate(req.body, { abortEarly: false, stripUnknown: true });
 
         if (error) {
             const errorMessage = error.details.map(detail => detail.message).join(', ');
 
-            const validationError = new Error(errorMessage);
-            validationError.status = 400;
-            validationError.type = 'Validation Error';
-
-            return next(validationError);
+            return next({
+                status: 400,
+                error: new Error(errorMessage),
+                type: 'Validation Error'
+            });
         }
-
+        req.body = value;
+        
         next();
     };
     return middleware;

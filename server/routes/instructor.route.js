@@ -15,9 +15,9 @@ import { blockingAtCertainDays } from '../middlewares/blockingAtCertainDays.midd
 
 const router = Router();
 
-router.get('/', getAllInstructors, blockingAtCertainDays());
-router.get('/specialization/:specialization', getInstructorsBySpecialization, blockingAtCertainDays());
-router.get('/:id', getInstructorById, blockingAtCertainDays());
+router.get('/', blockingAtCertainDays(), getAllInstructors);
+router.get('/specialization/:specialization', blockingAtCertainDays(), getInstructorsBySpecialization);
+router.get('/:id', blockingAtCertainDays(), getInstructorById);
 router.post('/', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), validate(instructorSchema), addInstructor);
 router.put('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), validate(instructorSchema), updateInstructor);
 router.delete('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), deleteInstructor);
