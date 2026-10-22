@@ -7,7 +7,7 @@
 import { API_BASE_URL, LOGIN_PAGE } from '../config.js';
 
 // ייבוא פונקציות לניהול ניתוק וזיהוי הטוקן מקובץ ה-session
-import { getToken, clearSession } from './session.js';
+import { getToken, clearSession } from '../session.js';
 
 // מילון מונחים: תרגום שגיאות נפוצות שחוזרות מהשרת באנגלית להודעות ברורות בעברית
 const ERROR_MESSAGES_HE = {
