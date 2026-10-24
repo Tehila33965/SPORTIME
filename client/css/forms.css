@@ -1,0 +1,218 @@
+:root {
+    --form-bg: #fff;
+    --form-border: #d8dcd5;
+    --form-border-strong: #b8c0b4;
+    --form-text: var(--ink);
+    --form-muted: var(--muted);
+    --form-error: #c63a3a;
+    --form-error-soft: #fff1f1;
+    --shadow-soft: 0 18px 40px rgb(17 21 17 / 12%);
+}
+
+form {
+    display: grid;
+    gap: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--form-text);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.72rem 0.9rem;
+    color: var(--form-text);
+    background: var(--form-bg);
+    border: 1px solid var(--form-border);
+    border-radius: 12px;
+    font: inherit;
+    transition: border-color 160ms ease, box-shadow 160ms ease, outline-color 160ms ease;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid rgb(196 240 91 / 36%);
+    border-color: var(--lime);
+    box-shadow: 0 0 0 3px rgb(196 240 91 / 18%);
+}
+
+input[aria-invalid='true'],
+select[aria-invalid='true'],
+textarea[aria-invalid='true'] {
+    border-color: var(--form-error);
+    background: var(--form-error-soft);
+}
+
+.form-error,
+.field-error,
+.state {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.form-error,
+.field-error {
+    color: var(--form-error);
+    font-weight: 600;
+}
+
+.form-error {
+    padding: 0.75rem 0.9rem;
+    background: var(--form-error-soft);
+    border: 1px solid rgb(198 58 58 / 20%);
+    border-radius: 12px;
+}
+
+.field-error {
+    margin-top: 0.35rem;
+}
+
+.state {
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+}
+
+.state-loading {
+    color: var(--form-muted);
+    background: rgb(17 21 17 / 5%);
+    border: 1px solid rgb(17 21 17 / 8%);
+}
+
+.state-error {
+    color: var(--form-error);
+    background: var(--form-error-soft);
+    border: 1px solid rgb(198 58 58 / 18%);
+}
+
+.state-empty {
+    color: var(--form-muted);
+    background: rgb(17 21 17 / 3%);
+    border: 1px dashed rgb(17 21 17 / 15%);
+}
+
+.btn {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.1rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-primary {
+    color: var(--deep);
+    background: var(--lime);
+    border-color: var(--lime);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #d9ff76;
+}
+
+.btn-secondary {
+    color: var(--ink);
+    background: transparent;
+    border-color: var(--form-border-strong);
+}
+
+.btn-danger {
+    color: #fff;
+    background: #d63b3b;
+    border-color: #d63b3b;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #b92f2f;
+}
+
+.modal {
+    width: min(100% - 1.5rem, 420px);
+    padding: 0;
+    color: var(--ink);
+    background: #fff;
+    border: 0;
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+}
+
+.modal::backdrop {
+    background: rgb(17 21 17 / 62%);
+}
+
+.modal__content {
+    display: grid;
+    gap: 1rem;
+    padding: 1.3rem 1.2rem 1rem;
+}
+
+.modal__title {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.3;
+}
+
+.modal__text {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.35rem;
+}
+
+@media (max-width: 400px) {
+    form {
+        gap: 0.8rem;
+    }
+
+    input,
+    select,
+    textarea,
+    .btn {
+        min-height: 42px;
+    }
+
+    .modal__content {
+        padding: 1.1rem 1rem 0.9rem;
+    }
+
+    .modal__actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal__actions .btn {
+        width: 100%;
+    }
+}
