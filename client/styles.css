@@ -716,3 +716,30 @@ button {
         transition-duration: .01ms !important;
     }
 }
+
+.site-header--solid {
+    position: relative;
+    background: var(--deep);
+}
+
+.main-nav a.is-current {
+    color: var(--lime);
+}
+
+.main-nav .nav-button {
+    padding: 0;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+.main-nav .nav-button:hover {
+    color: var(--lime);
+}
+
+.site-header.menu-open .main-nav .nav-button {
+    padding: 12px 0;
+    border-bottom: 1px solid rgb(255 255 255 / 12%);
+}
