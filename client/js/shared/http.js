@@ -62,8 +62,8 @@ export async function request(path, { method = 'GET', body, params } = {}) {
         headers.Authorization = `Bearer ${token}`;
     }
     
-    // אם נשלח מידע בגוף הבקשה, מציינים לשרת שהפורמט הוא JSON
-    if (body !== undefined) {
+    // אם נשלח מידע בגוף הבקשה, מציינים לשרת שהפורמט הוא JSON, אלא כשמדובר ב-FormData
+    if (body !== undefined && !(body instanceof FormData)) {
         headers['Content-Type'] = 'application/json';
     }
 
@@ -73,8 +73,8 @@ export async function request(path, { method = 'GET', body, params } = {}) {
         response = await fetch(url, {
             method,
             headers,
-            // המרת אובייקט ה-JS למחרוזת JSON לפני השליחה
-            body: body !== undefined ? JSON.stringify(body) : undefined
+            // המרת אובייקט ה-JS למחרוזת JSON לפני השליחה, אלא כשמדובר ב-FormData
+            body: body !== undefined ? (body instanceof FormData ? body : JSON.stringify(body)) : undefined
         });
     } catch {
         // במידה והשרת כבוי או שאין חיבור אינטרנט
