@@ -1,0 +1,221 @@
+.schedule-main {
+    min-height: calc(100svh - 92px);
+    padding: clamp(2rem, 6vw, 4.5rem) 1.25rem;
+    background:
+        radial-gradient(ellipse at 85% 5%, rgb(196 240 91 / 12%), transparent 30%),
+        var(--paper);
+}
+
+.schedule-content {
+    width: min(100%, 1080px);
+    margin: 0 auto;
+}
+
+.schedule-heading {
+    margin-bottom: 2rem;
+}
+
+.schedule-eyebrow {
+    margin: 0 0 0.4rem;
+    color: #687b40;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.schedule-heading h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.2;
+}
+
+.schedule-heading > p:last-child {
+    margin: 0.6rem 0 0;
+    color: var(--muted);
+}
+
+.schedule-tabs {
+    margin: 0 -0.25rem 2rem;
+}
+
+.day-tabs {
+    display: flex;
+    gap: 0.65rem;
+    overflow-x: auto;
+    padding: 0.35rem 0.25rem 0.8rem;
+    scrollbar-color: #b8c0b4 transparent;
+    scrollbar-width: thin;
+}
+
+.day-tab {
+    display: grid;
+    min-width: 84px;
+    min-height: 76px;
+    flex: 0 0 auto;
+    align-content: center;
+    justify-items: center;
+    gap: 0.25rem;
+    padding: 0.7rem 0.85rem;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid #e3e6df;
+    border-radius: 14px;
+    cursor: pointer;
+    font: inherit;
+    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.day-tab:hover {
+    transform: translateY(-2px);
+    border-color: var(--lime);
+}
+
+.day-tab.is-active {
+    color: var(--deep);
+    background: var(--lime);
+    border-color: var(--lime);
+}
+
+.day-tab__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.day-tab__number {
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.schedule-day + .schedule-day {
+    margin-top: 2.2rem;
+}
+
+.schedule-day__title {
+    margin: 0 0 0.9rem;
+    font-size: 1.25rem;
+}
+
+.schedule-day__sessions {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.session-card {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    background: #fff;
+    border: 1px solid rgb(17 21 17 / 8%);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgb(17 21 17 / 5%);
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.session-card:hover {
+    transform: translateY(-2px);
+    border-color: rgb(120 151 53 / 45%);
+    box-shadow: 0 12px 28px rgb(17 21 17 / 9%);
+}
+
+.session-card__time {
+    color: var(--ink);
+    font-size: 1.15rem;
+    font-weight: 800;
+    direction: ltr;
+    text-align: center;
+}
+
+.session-card__details {
+    min-width: 0;
+}
+
+.session-card__title {
+    overflow: hidden;
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.session-card__instructor {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.session-card__avatar {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    place-items: center;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.session-card__avatar--fallback {
+    color: var(--deep);
+    background: var(--lime);
+    font-weight: 800;
+}
+
+.session-card__footer {
+    display: grid;
+    justify-items: end;
+    gap: 0.45rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-align: end;
+}
+
+.session-card__badge {
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.session-card__badge--registered {
+    color: #355319;
+    background: #edf7d8;
+}
+
+.session-card__badge--full {
+    color: #8d2929;
+    background: #fff0ef;
+}
+
+.session-card__badge--needed {
+    color: #72551b;
+    background: #fff5d9;
+}
+
+@media (max-width: 600px) {
+    .schedule-main {
+        min-height: calc(100svh - 75px);
+        padding: 2rem 1rem;
+    }
+
+    .schedule-heading {
+        margin-bottom: 1.5rem;
+    }
+
+    .session-card {
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 0.65rem;
+        padding: 0.85rem;
+    }
+
+    .session-card__footer {
+        grid-column: 2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-items: start;
+        align-items: center;
+        gap: 0.45rem 0.65rem;
+        text-align: start;
+    }
+}
