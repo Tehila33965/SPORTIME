@@ -1,6 +1,6 @@
 import { mountHeader } from '../../shared/header.js';
 import { requireAdmin } from '../../shared/guard.js';
-import { showLoading, showError, showEmpty } from '../../shared/dom.js';
+import { showError, showEmpty } from '../../shared/dom.js';
 import { confirmDialog } from '../../shared/modal.js';
 import { getInstructors, deleteInstructor } from './instructor.service.js';
 
@@ -10,6 +10,8 @@ if (requireAdmin()) {
     const searchForm = document.querySelector('#search-form');
     const searchInput = document.querySelector('#search-input');
     const list = document.querySelector('#instructors-list');
+    let searchTimeoutId;
+    let lastRequestId = 0;
 
     const getSearchValue = () => new URLSearchParams(window.location.search).get('name') || '';
 
@@ -128,14 +130,19 @@ if (requireAdmin()) {
         return card;
     };
 
-    const loadInstructors = async () => {
-        const rawName = getSearchValue();
+    const loadInstructors = async (valueOverride) => {
+        const rawName = (valueOverride ?? searchInput.value).trim();
+        const requestId = ++lastRequestId;
+
+        updateSearchUrl(rawName);
         searchInput.value = rawName;
 
-        showLoading(list, 'טוען מאמנים...');
-
         try {
-            const instructors = await getInstructors({ name: rawName });
+            const instructors = await getInstructors({ name: rawName, limit: 100 });
+
+            if (requestId !== lastRequestId) {
+                return;
+            }
 
             if (!instructors || instructors.length === 0) {
                 showEmpty(list, 'לא נמצאו מאמנים');
@@ -146,18 +153,34 @@ if (requireAdmin()) {
             const cards = instructors.map(renderInstructorCard);
             cards.forEach((card) => list.appendChild(card));
         } catch (error) {
+            if (requestId !== lastRequestId) {
+                return;
+            }
+
             showError(list, error);
         }
     };
 
+    const scheduleSearch = () => {
+        window.clearTimeout(searchTimeoutId);
+        searchTimeoutId = window.setTimeout(() => {
+            loadInstructors(searchInput.value);
+        }, 300);
+    };
+
     searchInput.value = getSearchValue();
+
+    searchInput.addEventListener('input', scheduleSearch);
+    searchInput.addEventListener('search', () => {
+        window.clearTimeout(searchTimeoutId);
+        loadInstructors(searchInput.value);
+    });
 
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        const value = searchInput.value.trim();
-        updateSearchUrl(value);
-        loadInstructors();
+        window.clearTimeout(searchTimeoutId);
+        loadInstructors(searchInput.value);
     });
 
-    loadInstructors();
+    loadInstructors(searchInput.value);
 }
