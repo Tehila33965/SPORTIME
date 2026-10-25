@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORTIME | מאמנים</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../css/forms.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <script type="module" src="../../js/features/admin/instructor-form.page.js"></script>
+</head>
+<body>
+    <header id="site-header"></header>
+
+    <main class="page-shell">
+        <section class="admin-panel admin-panel--wide" aria-labelledby="form-title">
+            <div class="admin-topbar">
+                <h1 id="form-title">הוספת מאמן</h1>
+                <a class="btn btn-secondary" href="./instructors.html">חזרה לרשימה</a>
+            </div>
+
+            <form id="instructor-form" class="admin-form" novalidate>
+                <div id="form-error-root"></div>
+
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="name">שם</label>
+                        <input id="name" name="name" type="text" required minlength="2" maxlength="50" aria-describedby="name-help">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="specialization">התמחות</label>
+                        <input id="specialization" name="specialization" type="text" required minlength="2" maxlength="50">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="email">אימייל</label>
+                        <input id="email" name="email" type="email" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="phone">טלפון</label>
+                        <input id="phone" name="phone" type="tel" required minlength="9" maxlength="15">
+                    </div>
+
+                    <div class="field-group field-group--full">
+                        <label for="image">כתובת תמונה</label>
+                        <input id="image" name="image" type="url" placeholder="https://example.com/image.jpg" inputmode="url">
+                    </div>
+                </div>
+
+                <div class="image-preview-wrap">
+                    <img id="image-preview" class="image-preview" alt="תצוגה מקדימה של התמונה" hidden>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">שמור</button>
+                    <a class="btn btn-secondary" href="./instructors.html">ביטול</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
