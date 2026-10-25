@@ -254,6 +254,115 @@ body {
     gap: 0.75rem;
 }
 
+.admin-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.schedule-summary {
+    margin-bottom: 1rem;
+}
+
+.schedule-summary-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    background: #f5f9df;
+    border: 1px solid rgb(196 240 91 / 35%);
+    border-radius: 16px;
+    color: var(--deep);
+    font-weight: 700;
+}
+
+.checkbox-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--muted-strong);
+}
+
+.schedule-list {
+    display: grid;
+    gap: 1.4rem;
+}
+
+.schedule-day {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.schedule-day-title {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.schedule-day-rows {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.admin-session-row {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    background: #fafaf7;
+    border: 1px solid #ebefe7;
+    border-radius: 18px;
+}
+
+.admin-session-time {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--deep);
+}
+
+.admin-session-details {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.admin-session-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.admin-session-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.8rem;
+    color: var(--muted-strong);
+    font-size: 0.86rem;
+}
+
+.admin-session-attendance {
+    font-weight: 600;
+    color: var(--deep);
+}
+
+.admin-session-status {
+    color: var(--form-error, #c63a3a);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.admin-session-status.is-warning {
+    color: #8b5a00;
+}
+
+.admin-session-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
 .session-registered-count {
     margin: 0;
     color: var(--muted-strong);
@@ -330,6 +439,26 @@ body {
     }
 
     .template-actions .btn {
+        width: 100%;
+    }
+
+    .admin-actions,
+    .admin-session-row,
+    .admin-session-actions {
+        display: grid;
+        align-items: stretch;
+    }
+
+    .admin-session-row {
+        grid-template-columns: 1fr;
+        padding: 0.9rem;
+    }
+
+    .admin-session-actions {
+        justify-content: stretch;
+    }
+
+    .admin-session-actions .btn {
         width: 100%;
     }
 }

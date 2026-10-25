@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORTIME | מערכת שעות</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../css/forms.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <script type="module" src="../../js/features/admin/admin-schedule.page.js"></script>
+</head>
+<body>
+    <header id="site-header"></header>
+
+    <main class="page-shell">
+        <section class="admin-panel" aria-labelledby="schedule-title">
+            <div class="admin-topbar">
+                <h1 id="schedule-title">מערכת שעות</h1>
+                <div class="admin-actions">
+                    <a class="btn btn-primary" href="./session-form.html">הוספת שיעור</a>
+                    <a class="btn btn-secondary" href="./instructors.html">מאמנים</a>
+                    <a class="btn btn-secondary" href="./templates.html">תבניות</a>
+                </div>
+            </div>
+
+            <div class="schedule-summary" id="schedule-summary"></div>
+
+            <label class="checkbox-row" for="show-past-sessions">
+                <input id="show-past-sessions" type="checkbox">
+                <span>הצגת שיעורים שעברו</span>
+            </label>
+
+            <div id="schedule-list" class="schedule-list" aria-live="polite"></div>
+        </section>
+    </main>
+</body>
+</html>
