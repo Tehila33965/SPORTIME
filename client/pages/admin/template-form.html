@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORTIME | תבנית שיעור</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../css/forms.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <script type="module" src="../../js/features/admin/template-form.page.js"></script>
+</head>
+<body>
+    <header id="site-header"></header>
+
+    <main class="page-shell">
+        <section class="admin-panel admin-panel--wide" aria-labelledby="template-form-title">
+            <div class="admin-topbar">
+                <h1 id="template-form-title">הוספת תבנית</h1>
+                <a class="btn btn-secondary" href="./templates.html">חזרה לרשימה</a>
+            </div>
+
+            <form id="template-form" class="admin-form" novalidate>
+                <div id="form-error-root"></div>
+
+                <div class="form-grid">
+                    <div class="field-group field-group--full">
+                        <label for="title">שם</label>
+                        <input id="title" name="title" type="text" required minlength="2" maxlength="50">
+                    </div>
+
+                    <div class="field-group field-group--full">
+                        <label for="description">תיאור</label>
+                        <textarea id="description" name="description" required minlength="2" rows="5"></textarea>
+                    </div>
+
+                    <div class="field-group field-group--full">
+                        <label for="category">קטגוריה</label>
+                        <input id="category" name="category" list="category-options" type="text" required minlength="2" maxlength="50">
+                        <datalist id="category-options"></datalist>
+                    </div>
+
+                    <div class="field-group field-group--full">
+                        <label for="image">קובץ תמונה</label>
+                        <input id="image" name="image" type="file" accept="image/jpeg,image/png,image/gif">
+                    </div>
+                </div>
+
+                <div class="image-preview-wrap">
+                    <img id="image-preview" class="image-preview" alt="תצוגה מקדימה של התמונה" hidden>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">שמור</button>
+                    <a class="btn btn-secondary" href="./templates.html">ביטול</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

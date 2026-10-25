@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORTIME | תבניות שיעור</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../css/forms.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <script type="module" src="../../js/features/admin/templates.page.js"></script>
+</head>
+<body>
+    <header id="site-header"></header>
+
+    <main class="page-shell">
+        <section class="admin-panel" aria-labelledby="templates-title">
+            <div class="admin-topbar">
+                <h1 id="templates-title">תבניות שיעור</h1>
+                <a class="btn btn-primary" href="./template-form.html">הוספת תבנית</a>
+            </div>
+
+            <form id="search-form" class="search-form" novalidate>
+                <label for="search-input">חיפוש לפי שם</label>
+                <div class="search-row">
+                    <input id="search-input" name="title" type="search" placeholder="הקלד שם תבנית" autocomplete="off">
+                    <button class="btn btn-secondary" type="submit">חיפוש</button>
+                </div>
+            </form>
+
+            <div id="templates-list" class="templates-list" aria-live="polite"></div>
+        </section>
+    </main>
+</body>
+</html>
