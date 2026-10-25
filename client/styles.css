@@ -732,9 +732,9 @@ body.inner-page #site-header {
     position: relative;
     inset: auto;
     height: auto;
-    min-height: 250px;
+    min-height: 228px;
     align-items: flex-start;
-    padding: 26px 7.3% 120px;
+    padding: 22px 7.3% 108px;
     color: #fff;
     background-image:
         linear-gradient(180deg, rgba(10, 14, 10, 0.78), rgba(10, 14, 10, 0.9)),
@@ -759,22 +759,22 @@ body.inner-page #site-header > * {
 }
 
 body.inner-page #site-header::before {
-    top: 105px;
+    top: 96px;
     color: transparent;
     content: attr(data-title);
     background: linear-gradient(to left, var(--lime) 0 55%, #fff 55%);
     background-clip: text;
-    font-size: clamp(32px, 6vw, 56px);
-    font-weight: 900;
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 700;
     line-height: 1.15;
     -webkit-background-clip: text;
 }
 
 body.inner-page #site-header::after {
-    top: 174px;
+    top: 153px;
     color: #fff;
     content: attr(data-kicker) "\A" attr(data-subtitle);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.8;
     white-space: pre-line;
@@ -809,19 +809,19 @@ body.inner-page main {
 
 @media (max-width: 760px) {
     body.inner-page #site-header {
-        min-height: 235px;
-        padding: 17px 6% 115px;
+        min-height: 212px;
+        padding: 15px 6% 102px;
     }
 
     body.inner-page #site-header::before {
-        top: 92px;
+        top: 84px;
         right: 6%;
         left: 6%;
-        font-size: clamp(32px, 9vw, 44px);
+        font-size: clamp(29px, 8vw, 38px);
     }
 
     body.inner-page #site-header::after {
-        top: 148px;
+        top: 133px;
         right: 6%;
         left: 6%;
         font-size: 14px;
