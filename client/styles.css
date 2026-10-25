@@ -728,66 +728,112 @@ body.inner-page {
     background-attachment: fixed;
 }
 
-body.inner-page #site-header {
+body.inner-page {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.inner-header {
     position: relative;
     inset: auto;
+    display: block;
     height: auto;
-    min-height: 228px;
-    align-items: flex-start;
-    padding: 22px 7.3% 108px;
+    min-height: 0;
+    padding-block: 0 40px;
     color: #fff;
-    background-image:
-        linear-gradient(180deg, rgba(10, 14, 10, 0.78), rgba(10, 14, 10, 0.9)),
-        url("assets/images/%D7%97%D7%93%D7%A8%20%D7%9B%D7%95%D7%A9%D7%A81.webp");
-    background-position: center;
-    background-size: cover;
-    border-bottom: 1px solid rgb(255 255 255 / 17%);
+    border-bottom: 0;
+    background:
+        linear-gradient(rgba(10, 14, 10, .80), rgba(10, 14, 10, .88)),
+        url("assets/images/%D7%97%D7%93%D7%A8%20%D7%9B%D7%95%D7%A9%D7%A81.webp") center/cover no-repeat;
 }
 
-body.inner-page #site-header::before,
-body.inner-page #site-header::after {
-    position: absolute;
-    right: 7.3%;
-    left: 7.3%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-body.inner-page #site-header > * {
+.inner-header .header-bar {
     position: relative;
-    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, .14);
 }
 
-body.inner-page #site-header::before {
-    top: 96px;
-    color: transparent;
-    content: attr(data-title);
-    background: linear-gradient(to left, var(--lime) 0 55%, #fff 55%);
-    background-clip: text;
-    font-size: clamp(30px, 5vw, 44px);
+.inner-header .header-bar .main-nav {
+    gap: 22px;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+    color: #fff;
+    font-size: 14px;
+}
+
+.inner-header .brand {
+    gap: 8px;
+    font-size: 15.2px;
+    letter-spacing: .96px;
+}
+
+.inner-header .brand-mark {
+    width: 27px;
+    height: 27px;
+    font-size: 14px;
+    letter-spacing: -1.6px;
+}
+
+.inner-header .header-cta {
+    gap: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.inner-header .page-hero {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 24px 24px 0;
+}
+
+.page-kicker {
+    margin: 0 0 10px;
+    color: var(--lime);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+.inner-header .page-title {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: clamp(32px, 5vw, 48px);
     font-weight: 700;
     line-height: 1.15;
-    -webkit-background-clip: text;
 }
 
-body.inner-page #site-header::after {
-    top: 153px;
-    color: #fff;
-    content: attr(data-kicker) "\A" attr(data-subtitle);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.8;
-    white-space: pre-line;
+.inner-header .page-title-accent {
+    color: var(--lime);
 }
 
-body.inner-page #site-header .main-nav {
-    color: rgb(255 255 255 / 94%);
+.inner-header .page-title,
+.inner-header .page-title-accent {
+    color: var(--lime);
+}
+
+.page-subtitle {
+    max-width: 60ch;
+    margin: 0;
+    color: rgba(255, 255, 255, .78);
+    font-size: 17px;
 }
 
 body.inner-page main {
     min-height: calc(100svh - 92px);
-    padding: clamp(2rem, 6vw, 4.5rem) 1.25rem;
+    margin-top: 0;
+    padding: 40px 24px;
     background: transparent;
+}
+
+body.inner-page main.page-container {
+    width: min(100%, 1200px);
+    margin-inline: auto;
 }
 
 .main-nav a.is-current {
@@ -808,33 +854,26 @@ body.inner-page main {
 }
 
 @media (max-width: 760px) {
-    body.inner-page #site-header {
-        min-height: 212px;
-        padding: 15px 6% 102px;
+    .inner-header .header-bar {
+        padding: 12px 16px;
     }
 
-    body.inner-page #site-header::before {
-        top: 84px;
-        right: 6%;
-        left: 6%;
-        font-size: clamp(29px, 8vw, 38px);
+    .inner-header .page-hero {
+        padding: 24px 16px 0;
     }
 
-    body.inner-page #site-header::after {
-        top: 133px;
-        right: 6%;
-        left: 6%;
-        font-size: 14px;
+    .inner-header .page-title {
+        font-size: clamp(32px, 8vw, 42px);
     }
 
-    body.inner-page #site-header.menu-open .main-nav {
-        top: 74px;
+    .inner-header.menu-open .main-nav {
+        top: 100%;
         background: #111511;
     }
 
     body.inner-page main {
         min-height: calc(100svh - 75px);
-        padding: 1.5rem 1rem 2.5rem;
+        padding: 40px 16px;
     }
 }
 

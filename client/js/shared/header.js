@@ -7,9 +7,7 @@ export const mountHeader = () => {
         throw new Error('לא נמצא header עם id="site-header"');
     }
 
-    header.classList.add('site-header');
-    header.classList.remove('site-header--solid');
-    header.replaceChildren();
+    header.classList.add('site-header', 'inner-header');
 
     const brand = document.createElement('a');
     brand.className = 'brand';
@@ -112,5 +110,8 @@ export const mountHeader = () => {
         setCta('למערכת השעות', CLIENT_HOME);
     }
 
-    header.append(brand, nav, cta, menuToggle);
+    const headerBar = document.createElement('div');
+    headerBar.className = 'header-bar';
+    headerBar.append(brand, nav, cta, menuToggle);
+    header.prepend(headerBar);
 };

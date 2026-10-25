@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#101311">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23c4f05b'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='36' font-weight='900' font-style='italic' text-anchor='middle' fill='%23111511'%3ES%3C/text%3E%3C/svg%3E">
     <title>הרשמה ותשלום | SPORTIME</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +15,14 @@
     <script type="module" src="../../js/features/registrations/checkout.page.js"></script>
 </head>
 <body class="inner-page">
-    <header id="site-header" data-kicker="הצעד הבא לאימון שלך" data-title="מקום לאימון." data-subtitle="מסיימים את ההרשמה ומכינים את הגוף לתנועה"></header>
-    <main class="checkout-main">
+    <header id="site-header" class="site-header inner-header">
+        <div class="page-hero">
+            <p class="page-kicker">הצעד הבא לאימון שלך</p>
+            <h1 class="page-title">הרשמה ותשלום<span class="page-title-accent">.</span></h1>
+            <p class="page-subtitle">מסיימים את ההרשמה ומכינים את הגוף לתנועה</p>
+        </div>
+    </header>
+    <main class="checkout-main page-container">
         <section class="checkout-content" aria-labelledby="checkout-title">
             <a class="checkout-back" href="/pages/classes/schedule.html">חזרה למערכת השעות</a>
             <div id="checkout-content"></div>

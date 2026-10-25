@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#101311">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23c4f05b'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='36' font-weight='900' font-style='italic' text-anchor='middle' fill='%23111511'%3ES%3C/text%3E%3C/svg%3E">
     <title>ההרשמות שלי | SPORTIME</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,11 +15,15 @@
     <script type="module" src="../../js/features/registrations/my-registrations.page.js"></script>
 </head>
 <body class="inner-page">
-    <header id="site-header" data-kicker="האימונים שלך" data-title="ההרשמות שלי." data-subtitle="כל האימונים במקום אחד"></header>
-    <main class="my-registrations-main">
+    <header id="site-header" class="site-header inner-header">
+        <div class="page-hero">
+            <p class="page-kicker">האימונים שלך</p>
+            <h1 id="my-registrations-title" class="page-title">ההרשמות שלי<span class="page-title-accent">.</span></h1>
+            <p class="page-subtitle">כל האימונים במקום אחד</p>
+        </div>
+    </header>
+    <main class="my-registrations-main page-container">
         <section class="my-registrations-content" aria-labelledby="my-registrations-title">
-            <p class="checkout-eyebrow">האימונים שלך</p>
-            <h1 id="my-registrations-title">ההרשמות שלי</h1>
             <div id="registration-message" class="registration-message" aria-live="polite" hidden></div>
             <div id="registration-tabs"></div>
             <div id="registration-list"></div>
