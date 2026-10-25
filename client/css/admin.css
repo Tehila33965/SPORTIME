@@ -254,6 +254,26 @@ body {
     gap: 0.75rem;
 }
 
+.session-registered-count {
+    margin: 0;
+    color: var(--muted-strong);
+    font-weight: 600;
+}
+
+.empty-state {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1rem;
+    border: 1px dashed var(--form-border, #d8dcd5);
+    border-radius: 18px;
+    background: #fafaf7;
+}
+
+.empty-state p {
+    margin: 0;
+    color: var(--muted-strong);
+}
+
 @media (max-width: 400px) {
     .page-shell {
         padding-inline: 12px;
