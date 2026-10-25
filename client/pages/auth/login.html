@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101311">
+    <title>התחברות | SPORTIME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../css/forms.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+    <script type="module" src="../../js/features/auth/login.page.js"></script>
+</head>
+<body>
+    <header id="site-header"></header>
+    <main class="auth-main">
+        <section class="auth-card" aria-labelledby="auth-title">
+            <p class="auth-eyebrow">ברוכים הבאים ל־SPORTIME</p>
+            <h1 id="auth-title">התחברות</h1>
+            <p class="auth-intro">מתחברים וממשיכים לזוז.</p>
+            <form id="login-form">
+                <div class="auth-field">
+                    <label for="email">אימייל</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required>
+                </div>
+                <div class="auth-field">
+                    <label for="password">סיסמה</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required>
+                </div>
+                <button class="btn btn-primary auth-submit" type="submit">התחברות</button>
+            </form>
+            <p class="auth-switch">אין לך חשבון? <a href="/pages/auth/register.html">להרשמה</a></p>
+        </section>
+    </main>
+</body>
+</html>
