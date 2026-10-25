@@ -1,6 +1,8 @@
 import { getClassSessions } from './classSession.service.js';
 import { createDayTabs } from './components/dayTabs.js';
+import { createFilterBar } from './components/filterBar.js';
 import { createSessionCard } from './components/sessionCard.js';
+import { filterSessions, readFilters, writeFilters } from './filters.js';
 import { getMyRegistrations } from '../registrations/registration.service.js';
 import { isLoggedIn } from '../../shared/session.js';
 import { mountHeader } from '../../shared/header.js';
@@ -11,6 +13,8 @@ mountHeader();
 
 const tabsContainer = document.querySelector('#day-tabs');
 const listContainer = document.querySelector('#session-list');
+const filterContainer = createEl('div', { className: 'schedule-filter-area' });
+listContainer.before(filterContainer);
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 const getSelectedDate = () => {
     const date = new URLSearchParams(window.location.search).get('date');
@@ -18,6 +22,7 @@ const getSelectedDate = () => {
 };
 
 let selectedDate = getSelectedDate();
+let filters = readFilters();
 let upcomingSessions = [];
 let registeredSessionIds = new Set();
 
@@ -38,15 +43,13 @@ const renderSessions = () => {
     }));
     listContainer.replaceChildren();
 
-    const visibleSessions = selectedDate === 'all'
+    const daySessions = selectedDate === 'all'
         ? upcomingSessions
         : upcomingSessions.filter((session) => session.date.slice(0, 10) === selectedDate);
+    const visibleSessions = filterSessions(daySessions, filters);
 
     if (visibleSessions.length === 0) {
-        showEmpty(
-            listContainer,
-            selectedDate === 'all' ? 'אין שיעורים קרובים כרגע' : 'לא נמצאו שיעורים ביום הזה',
-        );
+        showEmpty(listContainer, 'אין שיעורים שמתאימים לסינון');
         return;
     }
 
@@ -81,6 +84,15 @@ const init = async () => {
             (registrations ?? []).map((registration) => String(registration.session?.id ?? registration.session)),
         );
 
+        filterContainer.replaceChildren(createFilterBar({
+            sessions: upcomingSessions,
+            filters,
+            onChange: (nextFilters) => {
+                filters = nextFilters;
+                writeFilters(filters);
+                renderSessions();
+            },
+        }));
         renderSessions();
     } catch (error) {
         showError(listContainer, error);
