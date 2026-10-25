@@ -1,9 +1,7 @@
 .schedule-main {
     min-height: calc(100svh - 92px);
     padding: clamp(2rem, 6vw, 4.5rem) 1.25rem;
-    background:
-        radial-gradient(ellipse at 85% 5%, rgb(196 240 91 / 12%), transparent 30%),
-        var(--paper);
+    background: transparent;
 }
 
 .schedule-content {
@@ -12,12 +10,18 @@
 }
 
 .schedule-heading {
-    margin-bottom: 2rem;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
 }
 
 .schedule-eyebrow {
     margin: 0 0 0.4rem;
-    color: #687b40;
+    color: #536d1b;
     font-size: 0.9rem;
     font-weight: 700;
 }
@@ -25,6 +29,7 @@
 .schedule-heading h1 {
     margin: 0;
     font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
     line-height: 1.2;
 }
 
@@ -37,9 +42,9 @@
     margin: 0 0 2rem;
     padding: 1.25rem;
     background: #fff;
-    border: 1px solid rgb(17 21 17 / 8%);
-    border-radius: 18px;
-    box-shadow: 0 8px 24px rgb(17 21 17 / 5%);
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
 }
 
 .upcoming-registrations[hidden] {
@@ -86,9 +91,10 @@
     justify-content: space-between;
     gap: 1rem;
     padding: 0.8rem 0.9rem;
-    background: #f8f9f6;
-    border: 1px solid #eaede6;
-    border-radius: 13px;
+    background: #fff;
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
 }
 
 .upcoming-registrations .registration-item__title {
@@ -126,8 +132,8 @@
     gap: 0.85rem;
     padding: 1rem;
     background: #fff;
-    border: 1px solid rgb(17 21 17 / 8%);
-    border-radius: 16px;
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
 }
 
 .schedule-filter {
@@ -192,23 +198,24 @@
     gap: 0.25rem;
     padding: 0.7rem 0.85rem;
     color: var(--ink);
-    background: #fff;
-    border: 1px solid #e3e6df;
+    background: rgb(255 255 255 / 60%);
+    border: 1px solid #dfe4db;
     border-radius: 14px;
     cursor: pointer;
     font: inherit;
-    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .day-tab:hover {
-    transform: translateY(-2px);
-    border-color: var(--lime);
+    border-color: #b7c79a;
 }
 
 .day-tab.is-active {
-    color: var(--deep);
-    background: var(--lime);
-    border-color: var(--lime);
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid #9ccb2c;
+    box-shadow: 0 1px 4px rgb(17 21 17 / 7%);
+    font-weight: 700;
 }
 
 .day-tab__label {
@@ -218,7 +225,7 @@
 
 .day-tab__number {
     font-size: 1.2rem;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1;
 }
 
@@ -237,28 +244,27 @@
 }
 
 .session-card {
+    position: relative;
     display: grid;
     grid-template-columns: 76px minmax(0, 1fr) auto;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 1.1rem;
+    padding: 1.2rem 1.25rem 1.55rem;
     background: #fff;
-    border: 1px solid rgb(17 21 17 / 8%);
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgb(17 21 17 / 5%);
-    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
+    transition: box-shadow 160ms ease;
 }
 
 .session-card:hover {
-    transform: translateY(-2px);
-    border-color: rgb(120 151 53 / 45%);
-    box-shadow: 0 12px 28px rgb(17 21 17 / 9%);
+    box-shadow: 0 4px 16px rgb(17 21 17 / 9%);
 }
 
 .session-card__time {
     color: var(--ink);
-    font-size: 1.15rem;
-    font-weight: 800;
+    font-size: 1.05rem;
+    font-weight: 700;
     direction: ltr;
     text-align: center;
 }
@@ -271,6 +277,7 @@
     overflow: hidden;
     margin: 0 0 0.45rem;
     font-size: 1.05rem;
+    font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -294,9 +301,9 @@
 }
 
 .session-card__avatar--fallback {
-    color: var(--deep);
-    background: var(--lime);
-    font-weight: 800;
+    color: var(--ink);
+    background: #edf1e9;
+    font-weight: 700;
 }
 
 .session-card__footer {
@@ -309,24 +316,33 @@
 }
 
 .session-card__badge {
-    padding: 0.25rem 0.55rem;
+    color: #62665f;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.session-card__progress {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.55rem;
+    left: 1rem;
+    height: 3px;
+    overflow: hidden;
+    background: #e8ece6;
     border-radius: 999px;
-    font-weight: 700;
 }
 
-.session-card__badge--registered {
-    color: #355319;
-    background: #edf7d8;
+.session-card__progress > span {
+    display: block;
+    width: var(--progress, 0%);
+    height: 100%;
+    background: rgb(156 203 44 / 55%);
+    border-radius: inherit;
+    transition: width 220ms ease;
 }
 
-.session-card__badge--full {
-    color: #8d2929;
-    background: #fff0ef;
-}
-
-.session-card__badge--needed {
-    color: #72551b;
-    background: #fff5d9;
+.session-card__progress--full > span {
+    background: #a5aaa2;
 }
 
 @media (max-width: 600px) {
@@ -374,7 +390,7 @@
     .session-card {
         grid-template-columns: 58px minmax(0, 1fr);
         gap: 0.65rem;
-        padding: 0.85rem;
+        padding: 1rem 0.9rem 1.35rem;
     }
 
     .session-card__footer {

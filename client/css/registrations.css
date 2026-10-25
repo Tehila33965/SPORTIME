@@ -1,9 +1,7 @@
 .checkout-main {
     min-height: calc(100svh - 92px);
     padding: clamp(2rem, 6vw, 4rem) 1.25rem;
-    background:
-        radial-gradient(ellipse at 85% 5%, rgb(196 240 91 / 12%), transparent 30%),
-        var(--paper);
+    background: transparent;
 }
 
 .checkout-content {
@@ -39,14 +37,14 @@
 .checkout-success {
     padding: clamp(1.3rem, 4vw, 2rem);
     background: #fff;
-    border: 1px solid rgb(17 21 17 / 8%);
-    border-radius: 20px;
-    box-shadow: 0 14px 34px rgb(17 21 17 / 7%);
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
 }
 
 .checkout-eyebrow {
     margin: 0 0 0.4rem;
-    color: #687b40;
+    color: #536d1b;
     font-weight: 700;
 }
 
@@ -54,6 +52,7 @@
 .checkout-success h1 {
     margin: 0;
     font-size: clamp(1.8rem, 5vw, 2.35rem);
+    font-weight: 700;
     line-height: 1.2;
 }
 
@@ -209,11 +208,9 @@
 }
 
     .my-registrations-main {
-        min-height: calc(100svh - 92px);
-        padding: clamp(2rem, 6vw, 4rem) 1.25rem;
-        background:
-            radial-gradient(ellipse at 85% 5%, rgb(196 240 91 / 12%), transparent 30%),
-            var(--paper);
+            min-height: calc(100svh - 92px);
+            padding: clamp(2rem, 6vw, 4rem) 1.25rem;
+            background: transparent;
     }
 
     .my-registrations-content {
@@ -222,9 +219,23 @@
     }
 
     .my-registrations-content > h1 {
-        margin: 0 0 1.7rem;
-        font-size: clamp(2rem, 6vw, 2.8rem);
-        line-height: 1.2;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+    }
+
+    .my-registrations-content > .checkout-eyebrow {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
     }
 
     .registration-message {
@@ -265,9 +276,9 @@
         min-height: 44px;
         flex: 1;
         padding: 0.55rem 1rem;
-        color: var(--muted);
+        color: #40453f;
         background: transparent;
-        border: 0;
+        border: 1px solid #dfe4db;
         border-radius: 10px;
         cursor: pointer;
         font: inherit;
@@ -278,7 +289,8 @@
     .registration-tab.is-active {
         color: var(--ink);
         background: #fff;
-        box-shadow: 0 2px 8px rgb(17 21 17 / 8%);
+        border: 1px solid #9ccb2c;
+        box-shadow: 0 1px 4px rgb(17 21 17 / 7%);
     }
 
     .registration-tabpanel:focus-visible {
@@ -300,9 +312,9 @@
         gap: 1rem;
         padding: 1rem 1.15rem;
         background: #fff;
-        border: 1px solid rgb(17 21 17 / 8%);
-        border-radius: 16px;
-        box-shadow: 0 8px 24px rgb(17 21 17 / 5%);
+        border: 1px solid #e7ebe3;
+        border-radius: 14px;
+        box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
     }
 
     .registration-item__details {

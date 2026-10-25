@@ -45,6 +45,8 @@ export const createSessionCard = (session, { isRegistered }) => {
     const footer = createEl('div', { className: 'session-card__footer' });
     const count = Number(session.registeredCount) || 0;
     const capacity = Number(session.maxParticipants) || 0;
+    const progress = capacity > 0 ? Math.max(0, Math.min(100, Math.round((count / capacity) * 100))) : 0;
+    const progressStatus = count >= capacity ? 'full' : 'available';
     footer.append(createEl('span', {
         className: 'session-card__count',
         text: `נרשמו ${count} מתוך ${capacity}`,
@@ -67,6 +69,20 @@ export const createSessionCard = (session, { isRegistered }) => {
         }));
     }
 
-    card.append(time, details, footer);
+    const capacityProgress = createEl('div', {
+        className: `session-card__progress session-card__progress--${progressStatus}`,
+        attrs: {
+            role: 'meter',
+            'aria-label': 'מקומות תפוסים בשיעור',
+            'aria-valuemin': 0,
+            'aria-valuemax': 100,
+            'aria-valuenow': progress,
+        },
+    });
+    const progressFill = createEl('span');
+    progressFill.style.setProperty('--progress', `${progress}%`);
+    capacityProgress.append(progressFill);
+
+    card.append(time, details, footer, capacityProgress);
     return card;
 };

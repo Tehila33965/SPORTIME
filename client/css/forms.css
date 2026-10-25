@@ -44,9 +44,10 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 3px solid rgb(196 240 91 / 36%);
+    outline: 3px solid var(--lime);
+    outline-offset: 1px;
     border-color: var(--lime);
-    box-shadow: 0 0 0 3px rgb(196 240 91 / 18%);
+    box-shadow: 0 0 0 4px rgb(106 145 35 / 22%);
 }
 
 input[aria-invalid='true'],
@@ -93,15 +94,15 @@ textarea[aria-invalid='true'] {
 }
 
 .state-error {
-    color: var(--form-error);
+    color: #8f2020;
     background: var(--form-error-soft);
-    border: 1px solid rgb(198 58 58 / 18%);
+    border: 1px solid rgb(198 58 58 / 32%);
 }
 
 .state-empty {
-    color: var(--form-muted);
-    background: rgb(17 21 17 / 3%);
-    border: 1px dashed rgb(17 21 17 / 15%);
+    color: var(--form-text);
+    background: #fff;
+    border: 1px dashed #aeb7a6;
 }
 
 .btn {
@@ -113,13 +114,13 @@ textarea[aria-invalid='true'] {
     padding: 0.7rem 1.1rem;
     font-weight: 700;
     border: 1px solid transparent;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, opacity 180ms ease;
 }
 
 .btn:hover:not(:disabled) {
-    transform: translateY(-1px);
+    transform: none;
 }
 
 .btn:disabled {
@@ -131,16 +132,19 @@ textarea[aria-invalid='true'] {
     color: var(--deep);
     background: var(--lime);
     border-color: var(--lime);
+    box-shadow: none;
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: #d9ff76;
+    background: #b4dc42;
+    border-color: #b4dc42;
 }
 
 .btn-secondary {
     color: var(--ink);
     background: transparent;
-    border-color: var(--form-border-strong);
+    border-color: #b8c0b4;
+    border-width: 1px;
 }
 
 .btn-danger {
@@ -151,6 +155,11 @@ textarea[aria-invalid='true'] {
 
 .btn-danger:hover:not(:disabled) {
     background: #b92f2f;
+}
+
+.btn:focus-visible {
+    outline: 3px solid #547a16;
+    outline-offset: 3px;
 }
 
 .modal {

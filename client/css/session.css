@@ -1,9 +1,7 @@
 .session-main {
     min-height: calc(100svh - 92px);
     padding: clamp(2rem, 6vw, 4.5rem) 1.25rem;
-    background:
-        radial-gradient(ellipse at 85% 5%, rgb(196 240 91 / 12%), transparent 30%),
-        var(--paper);
+    background: transparent;
 }
 
 .session-content {
@@ -33,9 +31,9 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     overflow: hidden;
     background: #fff;
-    border: 1px solid rgb(17 21 17 / 8%);
-    border-radius: 22px;
-    box-shadow: 0 18px 40px rgb(17 21 17 / 9%);
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
 }
 
 .session-detail__hero {
@@ -56,7 +54,7 @@
     display: grid;
     place-items: center;
     padding: 2rem;
-    color: #667052;
+    color: #37412a;
     background:
         linear-gradient(145deg, rgb(196 240 91 / 22%), transparent 55%),
         #e9eddf;
@@ -73,13 +71,14 @@
 
 .session-detail__category {
     margin: 0 0 0.4rem;
-    color: #687b40;
+    color: #536d1b;
     font-weight: 700;
 }
 
 .session-detail__title {
     margin: 0;
     font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 700;
     line-height: 1.2;
 }
 
@@ -201,7 +200,7 @@
 .session-detail__notice {
     margin: 0;
     padding: 0.8rem 1rem;
-    color: #72551b;
+    color: #65420a;
     background: #fff5d9;
     border-radius: 12px;
     font-size: 0.9rem;
