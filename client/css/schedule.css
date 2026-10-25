@@ -33,6 +33,84 @@
     color: var(--muted);
 }
 
+.upcoming-registrations {
+    margin: 0 0 2rem;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid rgb(17 21 17 / 8%);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgb(17 21 17 / 5%);
+}
+
+.upcoming-registrations[hidden] {
+    display: none;
+}
+
+.upcoming-registrations__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.upcoming-registrations__heading h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.upcoming-registrations__heading a {
+    color: #536d1b;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--lime);
+    text-underline-offset: 3px;
+}
+
+.upcoming-registrations__heading a:hover {
+    color: var(--ink);
+}
+
+.upcoming-registrations .registration-list {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.upcoming-registrations .registration-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0.9rem;
+    background: #f8f9f6;
+    border: 1px solid #eaede6;
+    border-radius: 13px;
+}
+
+.upcoming-registrations .registration-item__title {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.upcoming-registrations .registration-item__instructor {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.upcoming-registrations .registration-item__schedule {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.9rem;
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
 .schedule-tabs {
     margin: 0 -0.25rem 2rem;
 }
@@ -259,6 +337,20 @@
 
     .schedule-heading {
         margin-bottom: 1.5rem;
+    }
+
+    .upcoming-registrations {
+        padding: 1rem;
+    }
+
+    .upcoming-registrations__heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.45rem;
+    }
+
+    .upcoming-registrations .registration-item {
+        align-items: flex-start;
     }
 
     .schedule-filters {

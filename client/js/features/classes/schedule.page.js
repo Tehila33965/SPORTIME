@@ -4,15 +4,18 @@ import { createFilterBar } from './components/filterBar.js';
 import { createSessionCard } from './components/sessionCard.js';
 import { filterSessions, readFilters, writeFilters } from './filters.js';
 import { getMyRegistrations } from '../registrations/registration.service.js';
-import { isLoggedIn } from '../../shared/session.js';
+import { createRegistrationItem } from '../registrations/components/registrationItem.js';
+import { isAdmin, isLoggedIn } from '../../shared/session.js';
 import { mountHeader } from '../../shared/header.js';
 import { createEl, showEmpty, showError, showLoading } from '../../shared/dom.js';
-import { formatDateLong, groupByDate, isPast, sortSessions } from '../../shared/format.js';
+import { formatDateLong, groupByDate, isPast, sessionStart, sortSessions } from '../../shared/format.js';
 
 mountHeader();
 
 const tabsContainer = document.querySelector('#day-tabs');
 const listContainer = document.querySelector('#session-list');
+const upcomingRegistrationsSection = document.querySelector('#upcoming-registrations');
+const upcomingRegistrationsList = document.querySelector('#upcoming-registrations-list');
 const filterContainer = createEl('div', { className: 'schedule-filter-area' });
 listContainer.before(filterContainer);
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
@@ -25,6 +28,34 @@ let selectedDate = getSelectedDate();
 let filters = readFilters();
 let upcomingSessions = [];
 let registeredSessionIds = new Set();
+
+const renderUpcomingRegistrations = (registrations) => {
+    if (!isLoggedIn() || isAdmin()) {
+        upcomingRegistrationsSection.hidden = true;
+        return;
+    }
+
+    const sessionsById = new Map(upcomingSessions.map((session) => [String(session.id), session]));
+    const upcomingRegistrations = (registrations ?? [])
+        .map((registration) => ({
+            registration,
+            session: sessionsById.get(String(registration.session?.id ?? registration.session)),
+        }))
+        .filter(({ session }) => session && !isPast(session))
+        .sort((a, b) => sessionStart(a.session) - sessionStart(b.session))
+        .slice(0, 3);
+
+    if (upcomingRegistrations.length === 0) {
+        upcomingRegistrationsSection.hidden = true;
+        return;
+    }
+
+    upcomingRegistrationsList.replaceChildren(
+        ...upcomingRegistrations.map(({ registration, session }) =>
+            createRegistrationItem(registration, session, {})),
+    );
+    upcomingRegistrationsSection.hidden = false;
+};
 
 const updateAddress = (date) => {
     const url = new URL(window.location.href);
@@ -80,6 +111,7 @@ const init = async () => {
         ]);
 
         upcomingSessions = sortSessions((sessions ?? []).filter((session) => !isPast(session)));
+        renderUpcomingRegistrations(registrations);
         registeredSessionIds = new Set(
             (registrations ?? []).map((registration) => String(registration.session?.id ?? registration.session)),
         );
