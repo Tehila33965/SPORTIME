@@ -1,0 +1,405 @@
+.schedule-main {
+    min-height: calc(100svh - 92px);
+    padding: clamp(2rem, 6vw, 4.5rem) 1.25rem;
+    background: transparent;
+}
+
+.schedule-content {
+    width: min(100%, 1080px);
+    margin: 0 auto;
+}
+
+.schedule-heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.schedule-eyebrow {
+    margin: 0 0 0.4rem;
+    color: #536d1b;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.schedule-heading h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.schedule-heading > p:last-child {
+    margin: 0.6rem 0 0;
+    color: var(--muted);
+}
+
+.upcoming-registrations {
+    margin: 0 0 2rem;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
+}
+
+.upcoming-registrations[hidden] {
+    display: none;
+}
+
+.upcoming-registrations__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.upcoming-registrations__heading h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.upcoming-registrations__heading a {
+    color: #536d1b;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--lime);
+    text-underline-offset: 3px;
+}
+
+.upcoming-registrations__heading a:hover {
+    color: var(--ink);
+}
+
+.upcoming-registrations .registration-list {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.upcoming-registrations .registration-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0.9rem;
+    background: #fff;
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
+}
+
+.upcoming-registrations .registration-item__title {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.upcoming-registrations .registration-item__instructor {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.upcoming-registrations .registration-item__schedule {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.9rem;
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+.schedule-tabs {
+    margin: 0 -0.25rem 2rem;
+}
+
+.schedule-filter-area {
+    margin: 0 0 2rem;
+}
+
+.schedule-filters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(180px, 1.4fr) auto auto;
+    align-items: end;
+    gap: 0.85rem;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+}
+
+.schedule-filter {
+    min-width: 0;
+}
+
+.schedule-filter label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.84rem;
+}
+
+.schedule-filter select,
+.schedule-filter input[type='search'] {
+    min-height: 42px;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    font: inherit;
+}
+
+.schedule-filter--checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 42px;
+}
+
+.schedule-filter--checkbox input {
+    width: 18px;
+    height: 18px;
+    min-height: 0;
+    margin: 0;
+    accent-color: #789735;
+}
+
+.schedule-filter--checkbox label {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.schedule-filter__clear {
+    min-height: 42px;
+    white-space: nowrap;
+}
+
+.day-tabs {
+    display: flex;
+    gap: 0.65rem;
+    overflow-x: auto;
+    padding: 0.35rem 0.25rem 0.8rem;
+    scrollbar-color: #b8c0b4 transparent;
+    scrollbar-width: thin;
+}
+
+.day-tab {
+    display: grid;
+    min-width: 84px;
+    min-height: 76px;
+    flex: 0 0 auto;
+    align-content: center;
+    justify-items: center;
+    gap: 0.25rem;
+    padding: 0.7rem 0.85rem;
+    color: var(--ink);
+    background: rgb(255 255 255 / 60%);
+    border: 1px solid #dfe4db;
+    border-radius: 14px;
+    cursor: pointer;
+    font: inherit;
+    transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.day-tab:hover {
+    border-color: #b7c79a;
+}
+
+.day-tab.is-active {
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid #9ccb2c;
+    box-shadow: 0 1px 4px rgb(17 21 17 / 7%);
+    font-weight: 700;
+}
+
+.day-tab__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.day-tab__number {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.schedule-day + .schedule-day {
+    margin-top: 2.2rem;
+}
+
+.schedule-day__title {
+    margin: 0 0 0.9rem;
+    font-size: 1.25rem;
+}
+
+.schedule-day__sessions {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.session-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.25rem 1.55rem;
+    background: #fff;
+    border: 1px solid #e7ebe3;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
+    transition: box-shadow 160ms ease;
+}
+
+.session-card:hover {
+    box-shadow: 0 4px 16px rgb(17 21 17 / 9%);
+}
+
+.session-card__time {
+    color: var(--ink);
+    font-size: 1.05rem;
+    font-weight: 700;
+    direction: ltr;
+    text-align: center;
+}
+
+.session-card__details {
+    min-width: 0;
+}
+
+.session-card__title {
+    overflow: hidden;
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.session-card__instructor {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.session-card__avatar {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    place-items: center;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.session-card__avatar--fallback {
+    color: var(--ink);
+    background: #edf1e9;
+    font-weight: 700;
+}
+
+.session-card__footer {
+    display: grid;
+    justify-items: end;
+    gap: 0.45rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-align: end;
+}
+
+.session-card__badge {
+    color: #62665f;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.session-card__progress {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.55rem;
+    left: 1rem;
+    height: 3px;
+    overflow: hidden;
+    background: #e8ece6;
+    border-radius: 999px;
+}
+
+.session-card__progress > span {
+    display: block;
+    width: var(--progress, 0%);
+    height: 100%;
+    background: rgb(156 203 44 / 55%);
+    border-radius: inherit;
+    transition: width 220ms ease;
+}
+
+.session-card__progress--full > span {
+    background: #a5aaa2;
+}
+
+@media (max-width: 600px) {
+    .schedule-main {
+        min-height: calc(100svh - 75px);
+        padding: 2rem 1rem;
+    }
+
+    .schedule-heading {
+        margin-bottom: 1.5rem;
+    }
+
+    .upcoming-registrations {
+        padding: 1rem;
+    }
+
+    .upcoming-registrations__heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.45rem;
+    }
+
+    .upcoming-registrations .registration-item {
+        align-items: flex-start;
+    }
+
+    .schedule-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        padding: 0.85rem;
+    }
+
+    .schedule-filter--search {
+        grid-column: 1 / -1;
+    }
+
+    .schedule-filter--checkbox {
+        grid-column: 1 / -1;
+    }
+
+    .schedule-filter__clear {
+        width: 100%;
+    }
+
+    .session-card {
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 0.65rem;
+        padding: 1rem 0.9rem 1.35rem;
+    }
+
+    .session-card__footer {
+        grid-column: 2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-items: start;
+        align-items: center;
+        gap: 0.45rem 0.65rem;
+        text-align: start;
+    }
+}

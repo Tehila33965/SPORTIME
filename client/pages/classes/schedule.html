@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101311">
+    <title>מערכת שעות | SPORTIME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../css/forms.css">
+    <link rel="stylesheet" href="../../css/schedule.css">
+    <script type="module" src="../../js/features/classes/schedule.page.js"></script>
+</head>
+<body class="inner-page">
+    <header id="site-header" data-kicker="למצוא את האימון הבא" data-title="הקצב שלך." data-subtitle="בוחרים שיעור ומצטרפים לתנועה"></header>
+    <main class="schedule-main">
+        <section class="schedule-content" aria-labelledby="schedule-title">
+            <div class="schedule-heading">
+                <p class="schedule-eyebrow">למצוא את האימון הבא</p>
+                <h1 id="schedule-title">מערכת שעות</h1>
+                <p>בוחרים שיעור ומצטרפים לתנועה.</p>
+            </div>
+            <section id="upcoming-registrations" class="upcoming-registrations" aria-labelledby="upcoming-registrations-title" hidden>
+                <div class="upcoming-registrations__heading">
+                    <h2 id="upcoming-registrations-title">ההרשמות הקרובות שלי</h2>
+                    <a href="/pages/registrations/my-registrations.html">כל ההרשמות והשיעורים הקודמים</a>
+                </div>
+                <ul id="upcoming-registrations-list" class="registration-list"></ul>
+            </section>
+            <div id="day-tabs" class="schedule-tabs" aria-label="בחירת יום"></div>
+            <div id="session-list" class="session-list" aria-live="polite"></div>
+        </section>
+    </main>
+</body>
+</html>

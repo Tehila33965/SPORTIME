@@ -1,5 +1,5 @@
 import { LOGIN_PAGE, CLIENT_HOME, ADMIN_HOME } from '../config.js';
-import { getUser, isLoggedIn, isAdmin, logout } from './session.js';
+import { isLoggedIn, isAdmin, logout } from './session.js';
 
 export const mountHeader = () => {
     const header = document.querySelector('header#site-header');
@@ -7,7 +7,8 @@ export const mountHeader = () => {
         throw new Error('לא נמצא header עם id="site-header"');
     }
 
-    header.classList.add('site-header', 'site-header--solid');
+    header.classList.add('site-header');
+    header.classList.remove('site-header--solid');
     header.replaceChildren();
 
     const brand = document.createElement('a');
@@ -38,7 +39,9 @@ export const mountHeader = () => {
         link.href = href;
         link.textContent = label;
 
-        if (window.location.pathname === href) {
+        const currentUrl = new URL(window.location.href);
+        const linkUrl = new URL(href, window.location.origin);
+        if (currentUrl.pathname === linkUrl.pathname && currentUrl.hash === linkUrl.hash) {
             link.classList.add('is-current');
             link.setAttribute('aria-current', 'page');
         }
@@ -56,9 +59,21 @@ export const mountHeader = () => {
         nav.append(button);
     };
 
+    const cta = document.createElement('a');
+    cta.className = 'header-cta';
+    const setCta = (label, href) => {
+        cta.href = href;
+        cta.replaceChildren(document.createTextNode(`${label} `));
+        const arrow = document.createElement('span');
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '←';
+        cta.append(arrow);
+    };
+
     const closeMenu = () => {
         header.classList.remove('menu-open');
         menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'פתיחת תפריט');
     };
 
     const menuToggle = document.createElement('button');
@@ -75,23 +90,27 @@ export const mountHeader = () => {
     });
 
     if (!isLoggedIn()) {
+        addLink('עלינו', '/index.html#about');
+        addLink('האימונים שלנו', '/index.html#training');
+        addLink('צור קשר', '/index.html#contact');
         addLink('מערכת שעות', CLIENT_HOME);
         addLink('התחברות', LOGIN_PAGE);
+        setCta('מתחילים לזוז', '/pages/auth/register.html');
     } else if (isAdmin()) {
         addLink('ניהול שיעורים', ADMIN_HOME);
         addLink('מאמנים', '/pages/admin/instructors.html');
         addLink('תבניות', '/pages/admin/templates.html');
         addLogoutButton();
+        setCta('לניהול השיעורים', ADMIN_HOME);
     } else {
+        addLink('עלינו', '/index.html#about');
+        addLink('האימונים שלנו', '/index.html#training');
+        addLink('צור קשר', '/index.html#contact');
         addLink('מערכת שעות', CLIENT_HOME);
         addLink('ההרשמות שלי', '/pages/registrations/my-registrations.html');
-
-        const userName = document.createElement('span');
-        userName.textContent = `שלום, ${getUser()?.name ?? ''}`;
-        nav.append(userName);
-
         addLogoutButton();
+        setCta('למערכת השעות', CLIENT_HOME);
     }
 
-    header.append(brand, nav, menuToggle);
+    header.append(brand, nav, cta, menuToggle);
 };
