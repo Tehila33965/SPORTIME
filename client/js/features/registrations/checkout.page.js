@@ -145,17 +145,17 @@ if (requireLogin()) {
                 {
                     id: 'card-expiry',
                     name: 'expiry',
-                    label: 'תוקף (MM/YY)',
+                    label: 'תוקף הכרטיס (חודש/שנה)',
                     type: 'text',
                     inputmode: 'numeric',
-                    placeholder: 'MM/YY',
+                    placeholder: 'חודש/שנה',
                     maxlength: '5',
                     required: true,
                 },
                 {
                     id: 'card-cvv',
                     name: 'cvv',
-                    label: 'CVV',
+                    label: 'קוד אבטחה',
                     type: 'password',
                     inputmode: 'numeric',
                     maxlength: '3',
@@ -233,7 +233,7 @@ if (requireLogin()) {
 
                 const expiryMatch = expiry.match(/^(0[1-9]|1[0-2])\/(\d{2})$/);
                 if (!expiryMatch) {
-                    setFieldError(inputs.expiry, 'יש להזין תוקף בתבנית MM/YY');
+                    setFieldError(inputs.expiry, 'יש להזין תוקף בתבנית חודש/שנה');
                     isValid = false;
                 } else {
                     const now = new Date();

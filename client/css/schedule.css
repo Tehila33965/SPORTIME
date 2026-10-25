@@ -316,7 +316,7 @@
 }
 
 .session-card__badge {
-    color: #62665f;
+    color: var(--muted);
     font-size: 0.78rem;
     font-weight: 500;
 }
