@@ -1,6 +1,6 @@
 import { mountHeader } from '../../shared/header.js';
 import { requireAdmin } from '../../shared/guard.js';
-import { showLoading, showError, showEmpty } from '../../shared/dom.js';
+import { showError, showEmpty } from '../../shared/dom.js';
 import { confirmDialog } from '../../shared/modal.js';
 import { getClassTemplates, deleteClassTemplate } from './classTemplate.service.js';
 
@@ -10,6 +10,8 @@ if (requireAdmin()) {
     const searchForm = document.querySelector('#search-form');
     const searchInput = document.querySelector('#search-input');
     const list = document.querySelector('#templates-list');
+    let searchTimeoutId;
+    let lastRequestId = 0;
 
     const getSearchValue = () => new URLSearchParams(window.location.search).get('title') || '';
 
@@ -116,14 +118,19 @@ if (requireAdmin()) {
         return card;
     };
 
-    const loadTemplates = async () => {
-        const title = getSearchValue();
+    const loadTemplates = async (valueOverride) => {
+        const title = (valueOverride ?? searchInput.value).trim();
+        const requestId = ++lastRequestId;
+
+        updateSearchUrl(title);
         searchInput.value = title;
 
-        showLoading(list, 'טוען תבניות...');
-
         try {
-            const templates = await getClassTemplates({ title });
+            const templates = await getClassTemplates({ title, limit: 100 });
+
+            if (requestId !== lastRequestId) {
+                return;
+            }
 
             if (!templates || templates.length === 0) {
                 showEmpty(list, 'לא נמצאו תבניות');
@@ -133,16 +140,34 @@ if (requireAdmin()) {
             list.replaceChildren();
             templates.map(renderTemplateCard).forEach((card) => list.appendChild(card));
         } catch (error) {
+            if (requestId !== lastRequestId) {
+                return;
+            }
+
             showError(list, error);
         }
     };
 
-    searchForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const value = searchInput.value.trim();
-        updateSearchUrl(value);
-        loadTemplates();
+    const scheduleSearch = () => {
+        window.clearTimeout(searchTimeoutId);
+        searchTimeoutId = window.setTimeout(() => {
+            loadTemplates(searchInput.value);
+        }, 300);
+    };
+
+    searchInput.value = getSearchValue();
+
+    searchInput.addEventListener('input', scheduleSearch);
+    searchInput.addEventListener('search', () => {
+        window.clearTimeout(searchTimeoutId);
+        loadTemplates(searchInput.value);
     });
 
-    loadTemplates();
+    searchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        window.clearTimeout(searchTimeoutId);
+        loadTemplates(searchInput.value);
+    });
+
+    loadTemplates(searchInput.value);
 }
