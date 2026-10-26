@@ -1,7 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env server/app.js"
+    "start": "node server/app.js",
+    "dev": "node --watch --env-file=.env server/app.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
