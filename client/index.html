@@ -26,7 +26,7 @@
     <script type="module" src="js/features/home/home.header.js"></script>
 </head>
 <body>
-    <header class="site-header">
+    <header class="site-header" id="top">
         <a class="brand" href="#home" aria-label="SPORTIME — לעמוד הבית">
             <span class="brand-mark" aria-hidden="true">S</span>
             <span>SPORTIME<span class="brand-dot">.</span></span>
@@ -126,24 +126,99 @@
             </div>
         </section>
 
-        <section class="contact-band" id="contact" aria-labelledby="contact-title">
-            <div class="section-wrap contact-content">
-                <div>
-                    <p class="eyebrow"><span></span> הצעד הראשון מתחיל עכשיו</p>
-                    <h2 id="contact-title">מוכנים לזוז?</h2>
+        <section class="faq" aria-labelledby="faq-title">
+            <div class="faq-inner">
+                <div class="faq-intro">
+                    <p class="faq-eyebrow">אפשר לעזור?</p>
+                    <h2 id="faq-title">שאלות נפוצות</h2>
+                    <p>לא מצאתם תשובה? אנחנו זמינים בטלפון <a href="tel:0734242424" dir="ltr">073-4242424</a>.</p>
                 </div>
-                <a class="button button-light" href="mailto:hello@sportime.co.il?subject=%D7%A4%D7%A0%D7%99%D7%99%D7%94%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8">דברו איתנו <span aria-hidden="true">←</span></a>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>איך נרשמים לשיעור?</summary>
+                        <p>נכנסים לחשבון, בוחרים שיעור במערכת השעות ולוחצים על להרשמה. אחרי תשלום הרשמה מופיעה הודעת אישור.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>אפשר לבטל הרשמה?</summary>
+                        <p>בהחלט. בדף ההרשמות שלי לוחצים על ביטול הרשמה לצד השיעור.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>מה קורה אם לא נרשמו מספיק משתתפים?</summary>
+                        <p>שיעור מתקיים כשנרשמים אליו לפחות 5 משתתפים. שיעור שלא הגיע למספר הזה לא יתקיים.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>האם צריך חשבון כדי להירשם?</summary>
+                        <p>כן. ההרשמה לאתר חינמית ולוקחת פחות מדקה, ואז אפשר לצפות בכל השיעורים ולהירשם אליהם.</p>
+                    </details>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <a class="brand" href="#home" aria-label="SPORTIME — חזרה לראש העמוד">
-            <span class="brand-mark" aria-hidden="true">S</span>
-            <span>SPORTIME<span class="brand-dot">.</span></span>
-        </a>
-        <p>זזים קדימה, ביחד.</p>
-        <span>© 2026 SPORTIME</span>
+    <footer class="site-footer" id="contact">
+        <div class="footer-main">
+            <div class="footer-brand-column">
+                <a class="brand" href="#home" aria-label="SPORTIME — חזרה לראש העמוד">
+                    <span class="brand-mark" aria-hidden="true">S</span>
+                    <span>SPORTIME<span class="brand-dot">.</span></span>
+                </a>
+                <p>מקום לתנועה, לאנרגיה טובה ולהרגשה חזקה יותר — בכל יום מחדש.</p>
+                <nav class="social-links" aria-label="הרשתות החברתיות שלנו">
+                    <a href="#" aria-label="אינסטגרם">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="#" aria-label="פייסבוק">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.4 21v-8.2h2.8l.4-3.2h-3.2v-2c0-.9.3-1.5 1.6-1.5h1.7V3.2c-.3 0-1.3-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v2.3H7.2v3.2H10V21h3.4Z"/></svg>
+                    </a>
+                    <a href="#" aria-label="יוטיוב">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 7.5a2.5 2.5 0 0 0-1.8-1.8C17.6 5.2 12 5.2 12 5.2s-5.6 0-7.2.5A2.5 2.5 0 0 0 3 7.5a26 26 0 0 0-.5 4.5 26 26 0 0 0 .5 4.5 2.5 2.5 0 0 0 1.8 1.8c1.6.5 7.2.5 7.2.5s5.6 0 7.2-.5a2.5 2.5 0 0 0 1.8-1.8 26 26 0 0 0 .5-4.5 26 26 0 0 0-.5-4.5Z"/><path d="m10 15 5-3-5-3v6Z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                </nav>
+            </div>
+            <nav class="footer-column footer-quick-links" aria-label="קישורים מהירים">
+                <h2>קישורים מהירים</h2>
+                <ul>
+                    <li><a href="#training">האימונים שלנו</a></li>
+                    <li><a href="#about">עלינו</a></li>
+                    <li><a href="/pages/classes/schedule.html">מערכת שעות</a></li>
+                    <li><a href="/pages/auth/register.html">הרשמה</a></li>
+                    <li><a href="/pages/auth/login.html">התחברות</a></li>
+                </ul>
+            </nav>
+            <div class="footer-column footer-contact">
+                <h2>יצירת קשר</h2>
+                <ul>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.8 2 2 0 0 1 3.1 1.6h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7 9.6a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+                        <a href="tel:0734242424" dir="ltr">073-4242424</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-5.4A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.5 8.5c.5 2 2 3.5 4 4l1-1 2 .8-.2 1.8c-3.7.3-7.8-3.8-7.5-7.5l1.8-.2.8 2-1 .1Z"/></svg>
+                        <a href="https://wa.me/972584242424" target="_blank" rel="noopener" dir="ltr">058-4242424</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                        <a href="mailto:sportime@gmail.com" dir="ltr">sportime@gmail.com</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                        <span>שי עגנון 16, קיסריה</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-column footer-hours">
+                <h2><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> שעות פעילות</h2>
+                <ul>
+                    <li>א׳-ה׳: <span dir="ltr">07:00-22:00</span></li>
+                    <li>יום ו׳: <span dir="ltr">07:00-14:00</span></li>
+                    <li>מוצאי שבת: שעה אחרי צאת השבת עד 23:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span dir="ltr">© 2026 SPORTIME</span>
+            <a href="#top">חזרה למעלה <span aria-hidden="true">↑</span></a>
+        </div>
     </footer>
 </body>
 </html>
