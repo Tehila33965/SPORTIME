@@ -151,6 +151,65 @@ body {
     box-shadow: 0 2px 12px rgb(17 21 17 / 6%);
 }
 
+.admin-session-detail-panel {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 0.5rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgb(17 21 17 / 8%);
+}
+
+.admin-session-attendee-list {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.admin-session-attendee {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid rgb(17 21 17 / 8%);
+    border-radius: 10px;
+    background: rgb(246 249 240 / 95%);
+}
+
+.admin-session-attendee-name,
+.admin-session-attendee-email,
+.admin-session-attendee-status {
+    min-width: 0;
+    font-size: 14px;
+    color: var(--admin-ink);
+    word-break: break-word;
+}
+
+.admin-session-attendee-email {
+    color: var(--admin-muted);
+}
+
+.admin-session-attendee-status {
+    justify-self: end;
+    font-weight: 700;
+    color: var(--deep);
+    white-space: nowrap;
+}
+
+.admin-session-toggle {
+    min-width: 118px;
+    text-align: center;
+}
+
+.admin-session-toggle.is-open {
+    background: #edf8d6;
+    border-color: #c8df7d;
+    color: var(--deep);
+}
+
+.admin-session-detail-panel[hidden] {
+    display: none;
+}
+
 .instructor-avatar,
 .template-cover {
     display: grid;
@@ -534,6 +593,19 @@ body {
     .admin-session-row {
         grid-template-columns: 1fr;
         padding: 16px 20px;
+    }
+
+    .admin-session-detail-panel {
+        padding-top: 0.5rem;
+    }
+
+    .admin-session-attendee {
+        grid-template-columns: 1fr;
+        justify-items: start;
+    }
+
+    .admin-session-attendee-status {
+        justify-self: start;
     }
 
     .instructor-card .instructor-avatar,
