@@ -11,14 +11,14 @@ import { validate } from '../middlewares/validate.middleware.js';
 import { requireRole } from '../middlewares/role.middleware.js';
 import { classTemplateSchema } from '../schemas/classTemplate.schema.js';
 import { blockingAtCertainDays } from '../middlewares/blockingAtCertainDays.middleware.js';
-import { upload } from '../middlewares/upload.middleware.js';
+import { uploadImage } from '../middlewares/upload.middleware.js';
 
 const router = Router();
 
 router.get('/', blockingAtCertainDays(), getAllClassTemplates);
 router.get('/:id', blockingAtCertainDays(), getClassTemplate);
-router.post('/', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), upload.single('image'), validate(classTemplateSchema), addClassTemplate);
-router.put('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), upload.single('image'), validate(classTemplateSchema), updateClassTemplate);
+router.post('/', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), uploadImage, validate(classTemplateSchema), addClassTemplate);
+router.put('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), uploadImage, validate(classTemplateSchema), updateClassTemplate);
 router.delete('/:id', verifyAuth, requireRole(['admin']), blockingAtCertainDays(), deleteClassTemplate);
 
 export default router;

@@ -15,7 +15,15 @@ connectDB();
 // npm לבחירתנו
 // הוספת כותרות אבטחה להגנה מפני פגיעויות נפוצות ברשת
 // הוספת כותרות אבטחה. cross-origin נדרש כדי שהלקוח יוכל להציג תמונות מ-/uploads
-app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+    contentSecurityPolicy: {
+        directives: {
+            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+            'img-src': ["'self'", 'data:', 'blob:', 'https:'],
+        },
+    },
+}));
 
 app.use(cors());
 
