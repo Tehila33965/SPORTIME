@@ -31,10 +31,6 @@ app.use(express.static(fileURLToPath(new URL('../client', import.meta.url))));
 
 app.use(express.json());
 
-// הגשת התמונות שהועלו
-const UPLOAD_DIR = fileURLToPath(new URL('./uploads', import.meta.url));
-app.use('/uploads', express.static(UPLOAD_DIR));
-
 app.use('/api', indexRoutes);
 
 app.use(notFound);

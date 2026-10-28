@@ -1,35 +1,24 @@
 import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
+import { v2 as cloudinary } from 'cloudinary';
+import { env } from '../config/env.js';
 
-// נתיב מלא לתיקייה, והיא נוצרת אם היא לא קיימת (זו הסיבה לשגיאת 500)
-const UPLOAD_DIR = fileURLToPath(new URL('../uploads', import.meta.url));
-fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-
-// הגדרת מנגנון האחסון (Storage) של Multer - קובע איפה ואיך לשמור את הקבצים בדיסק השרת
-const storage = multer.diskStorage({
-    // קביעת תיקיית היעד לשמירת הקובץ שהועלה
-    destination: (req, file, cb) => cb(null, UPLOAD_DIR),
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
-    }
+cloudinary.config({
+    cloud_name: env.CLOUDINARY_CLOUD_NAME,
+    api_key: env.CLOUDINARY_API_KEY,
+    api_secret: env.CLOUDINARY_API_SECRET,
 });
 
-const fileFilter = (req, file, cb) => {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-    if (allowedTypes.includes(file.mimetype)) {
-        cb(null, true);
-    } else {
-        cb(new Error('סוג הקובץ חייב להיות JPG, PNG, GIF או WEBP'), false);
-    }
-};
-
-// אתחול מוגדר של Multer
+// הקובץ נשמר זמנית בזיכרון ומיד נשלח ל-Cloudinary (לא נכתב לדיסק)
 const upload = multer({
-    storage,
-    fileFilter,
+    storage: multer.memoryStorage(),
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        if (allowedTypes.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error('סוג הקובץ חייב להיות JPG, PNG, GIF או WEBP'), false);
+        }
+    },
     limits: { fileSize: 5 * 1024 * 1024 }
 });
 
@@ -43,12 +32,21 @@ const receiveFile = (req, res, next) => {
     });
 };
 
-// שמירת הנתיב של התמונה ב-req.body.image כדי שיישמר ב-DB
-const attachImagePath = (req, res, next) => {
-    if (req.file) {
-        req.body.image = `/uploads/${req.file.filename}`;
-    }
-    next();
+// שליחת הקובץ ל-Cloudinary ושמירת הכתובת המלאה ב-req.body.image
+const uploadToCloudinary = (req, res, next) => {
+    if (!req.file) return next();
+
+    const stream = cloudinary.uploader.upload_stream(
+        { folder: 'sportime' },
+        (error, result) => {
+            if (error) {
+                return next({ status: 500, error, type: 'Upload Error' });
+            }
+            req.body.image = result.secure_url;
+            next();
+        }
+    );
+    stream.end(req.file.buffer);
 };
 
-export const uploadImage = [receiveFile, attachImagePath];
+export const uploadImage = [receiveFile, uploadToCloudinary];
