@@ -1,9 +1,10 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 
 // נתיב מלא לתיקייה, והיא נוצרת אם היא לא קיימת (זו הסיבה לשגיאת 500)
-const UPLOAD_DIR = path.join(process.cwd(), 'uploads');
+const UPLOAD_DIR = fileURLToPath(new URL('../uploads', import.meta.url));
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
 // הגדרת מנגנון האחסון (Storage) של Multer - קובע איפה ואיך לשמור את הקבצים בדיסק השרת
