@@ -71,23 +71,11 @@ export const addClassSession = async (req, res, next) => {
 
 export const updateClassSession = async (req, res, next) => {
     try {
-        const existingSession = await ClassSession.findById(req.params.id);
-
-        if (!existingSession) {
-            return next({ status: 404, error: new Error('Class session not found'), type: 'resource not found error' });
-        }
-
-        if (req.body.maxParticipants < existingSession.registeredCount) {
-            return next({
-                status: 400,
-                error: new Error('maxParticipants cannot be lower than the number of registered users'),
-                type: 'Validation Error',
-            });
-        }
+        const { registeredCount, ...updates } = req.body;
 
         const session = await ClassSession.findByIdAndUpdate(
             req.params.id,
-            { $set: getEditableSessionFields(req.body) },
+            { $set: updates },
             { new: true, runValidators: true }
         );
 
