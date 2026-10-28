@@ -14,7 +14,7 @@ if (requireAdmin()) {
     const templateId = params.get('id');
     const dataList = document.querySelector('#category-options');
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     const maxSize = 5 * 1024 * 1024;
 
     const updateCategoryList = async () => {
@@ -50,7 +50,7 @@ if (requireAdmin()) {
         }
 
         if (!allowedTypes.includes(file.type)) {
-            setFieldError(imageInput, 'סוג הקובץ חייב להיות JPG, PNG או GIF');
+            setFieldError(imageInput, 'סוג הקובץ חייב להיות JPG, PNG, GIF או WEBP');
             return false;
         }
 

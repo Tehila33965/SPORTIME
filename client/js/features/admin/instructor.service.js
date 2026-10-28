@@ -15,19 +15,19 @@ export const getInstructor = (id) => {
     return request(`/instructors/${id}`);
 };
 
-// הוספת מאמן חדש.
-export const addInstructor = (data) => {
+// הוספת מאמן חדש באמצעות FormData.
+export const addInstructor = (formData) => {
     return request('/instructors', {
         method: 'POST',
-        body: data,
+        body: formData,
     });
 };
 
-// עדכון פרטי מאמן קיים.
-export const updateInstructor = (id, data) => {
+// עדכון מאמן קיים באמצעות FormData.
+export const updateInstructor = (id, formData) => {
     return request(`/instructors/${id}`, {
         method: 'PUT',
-        body: data,
+        body: formData,
     });
 };
 
